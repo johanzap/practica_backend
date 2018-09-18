@@ -12,6 +12,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -29,9 +30,16 @@ public class VentasREST {
     private VentasFacade ventasEJB;
     
     @GET
-    public Date findByUserByDay(@QueryParam("fechaInicio") Date fechaInicio,
-            @QueryParam("fechaFin") Date fechaFin,
-            @QueryParam("fechaInicio") Integer idUser) {
-        return fechaInicio;
+    @Path("ole")
+    public List<Ventas> findByUserByDay(@QueryParam("fechaInicio") String fechaInicio,
+            @QueryParam("fechaFin") String fechaFin,
+            @QueryParam("idUser") Integer idUser) {
+        return ventasEJB.findByUserByDay(fechaInicio, fechaFin, idUser);
+        // return ventasEJB.findAll();
+    }
+    
+    @POST
+    public void create(Ventas venta) {
+        ventasEJB.create(venta);
     }
 }

@@ -7,6 +7,7 @@ package com.mycompany.pagos.rest.services;
 
 import javax.ws.rs.ApplicationPath;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 
 /**
  *
@@ -16,6 +17,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 public class AppConfig extends ResourceConfig{
 
     public AppConfig() {
+        register(MultiPartFeature.class);
         packages("com.mycompany.pagos.rest.auth;com.mycompany.pagos.rest.services");
     }
     
